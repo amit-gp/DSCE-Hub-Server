@@ -1,0 +1,17 @@
+{
+  "name": "dsi_official_server",
+  "version": "1.0.0",
+  "description": "The official app for students of DSI to be able to keep up to date.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amit Kumar Gupta",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.6",
+    "nodemon": "^1.11.0"
+  }
+}
