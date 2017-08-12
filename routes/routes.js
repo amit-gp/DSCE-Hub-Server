@@ -20,10 +20,10 @@ router.post('/userLogin', function(req, res, next) {
      var email = req.body.Email;
      User.findOne({Email: req.body.Email, Password: req.body.Password}, function(err, user) {
           if(user){
-               res.send({Login: "Sucessful"});
+               res.send(user);
           }
           else {
-               res.send({Login: "Unsucessful"});
+               res.send({Login: "Unsuccessful"});
           }
      });
 });
