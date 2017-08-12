@@ -10,9 +10,16 @@ router.get('/amit', function(req, res, next) {
 
 router.post('/user', function(req, res, next) {
 
-     User.create(req.body).then(function(user) {
-          res.send(user);
-     }).catch(next);
+     User.findOne({Email: req.body.Email}, function(err, user) {
+          if(user){
+               res.send({Login: "Unsuccessful"});
+          }
+          else {
+               User.create(req.body).then(function(user) {
+                    res.send(user);
+               }).catch(next);
+          }
+     });
 });
 
 router.post('/userLogin', function(req, res, next) {
