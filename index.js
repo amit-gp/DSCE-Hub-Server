@@ -7,6 +7,14 @@ const app = express();
 app.use(bodyParser.json());
 app.use(require('./routes/routes'));
 
+//Error handling middleware
+app.use(function(err, req, res, next) {
+     //console.log("ERROR: " + err);
+     res.status(422).send({
+          error: err.message
+     });
+})
+
 //Connect to mongodb
 mongoose.connect('mongoDb://localhost/dsi-official-server', { useMongoClient: true });﻿
 mongoose.Promise = global.Promise;
