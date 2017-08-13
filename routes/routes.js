@@ -44,6 +44,12 @@ router.post('/userLogin', function(req, res, next) {
      });
 });
 
+router.get('/book', function(req, res, next) {
+    User.find({}, function(err, docs) {
+          res.send(docs);
+    });
+});
+
 router.get('/collegeNotification', function(req, res, next) {
           CollegeNotification.find({messageLevel: "college"}, function(err, docs) {
           res.send(docs);
