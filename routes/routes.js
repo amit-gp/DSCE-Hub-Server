@@ -13,6 +13,7 @@ router.get('/amit', function(req, res, next) {
 router.post('/book', function(req, res, next) {
 
     Book.create(req.body).then(function(book) {
+          console.log(req.query);
           res.send(book);
     }).catch(next);
 });
