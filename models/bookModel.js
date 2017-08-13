@@ -24,6 +24,11 @@ const BookSchema = new Schema ({
         required: [true, "Subject cannot be left empty !"]
       },
 
+      Description:{
+        type: String,
+        required: [true, "Description cannot be left empty !"]
+      },
+
       Edition: {
         type: String,
         required: [false]

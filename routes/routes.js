@@ -45,6 +45,14 @@ router.post('/userLogin', function(req, res, next) {
 });
 
 router.get('/book', function(req, res, next) {
+
+  /*----------TODO--------------------------
+
+    ----Implement query parameters and searching based on queries
+    ----Implement duplicate books
+
+  ----------TODO--------------------------*/
+
     Book.find({}, function(err, docs) {
           res.send(docs);
     });
