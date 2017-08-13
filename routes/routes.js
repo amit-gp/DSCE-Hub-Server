@@ -53,8 +53,8 @@ router.get('/book', function(req, res, next) {
 
   ----------TODO--------------------------*/
 
+    console.log(req.query.Math);
     Book.find({}, function(err, docs) {
-          console.log(req.query);
           res.send(docs);
     });
 });
