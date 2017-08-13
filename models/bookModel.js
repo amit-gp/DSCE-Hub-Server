@@ -30,7 +30,7 @@ const BookSchema = new Schema ({
       },
 
       UserDetails:{
-        
+
         Name: {
              type: String,
              required: [true, "User Name cannot be left empty !"]
@@ -44,7 +44,7 @@ const BookSchema = new Schema ({
         ContactNumber: {
              type: String,
              required: [true, "User Number cannot be left empty !"]
-        },
+        }
       }
 });
 
