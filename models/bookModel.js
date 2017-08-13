@@ -29,22 +29,19 @@ const BookSchema = new Schema ({
         required: [false]
       },
 
-      UserDetails:{
+      Name: {
+           type: String,
+           required: [true, "User Name cannot be left empty !"]
+      },
 
-        Name: {
-             type: String,
-             required: [true, "User Name cannot be left empty !"]
-        },
+      Email: {
+           type: String,
+           required: [true, "User Email cannot be left empty !"]
+      },
 
-        Email: {
-             type: String,
-             required: [true, "User Email cannot be left empty !"]
-        },
-
-        ContactNumber: {
-             type: String,
-             required: [true, "User Number cannot be left empty !"]
-        }
+      ContactNumber: {
+           type: String,
+           required: [true, "User Number cannot be left empty !"]
       }
 });
 
