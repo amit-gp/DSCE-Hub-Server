@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const userSelling = require('.UserModel');
+const UserSelling = require('./UserModel');
 
-const BookSchema = new Schem{
+const BookSchema = new Schema ({
 
       Title: {
         type: String,
@@ -26,11 +26,27 @@ const BookSchema = new Schem{
 
       Edition: {
         type: String,
-        required: [flase]
+        required: [false]
       },
 
-      UserSelling: userSelling
-}
+      UserDetails:{
+        
+        Name: {
+             type: String,
+             required: [true, "User Name cannot be left empty !"]
+        },
+
+        Email: {
+             type: String,
+             required: [true, "User Email cannot be left empty !"]
+        },
+
+        ContactNumber: {
+             type: String,
+             required: [true, "User Number cannot be left empty !"]
+        },
+      }
+});
 
 const User = mongoose.model('Book', BookSchema);
 module.exports = User;

@@ -14,7 +14,7 @@ router.post('/book', function(req, res, next) {
 
     Book.create(req, body).then(function(book) {
           res.send(user);
-    });
+    }).catch(next);
 });
 
 router.post('/user', function(req, res, next) {
