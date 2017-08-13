@@ -15,7 +15,7 @@ const BookSchema = new Schema ({
       },
 
       Price: {
-        type: Number,
+        type: String,
         required: [true, "Price of book cannot be left empty"]
       },
 
