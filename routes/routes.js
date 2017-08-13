@@ -45,7 +45,7 @@ router.post('/userLogin', function(req, res, next) {
 });
 
 router.get('/book', function(req, res, next) {
-    User.find({}, function(err, docs) {
+    Book.find({}, function(err, docs) {
           res.send(docs);
     });
 });
