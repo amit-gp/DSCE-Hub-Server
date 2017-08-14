@@ -26,6 +26,11 @@ const UserSchema = new Schema({
      USN_Number: {
           type: String,
           required: [false]
+     },
+
+     Admin: {
+          type: String,
+          required: [true]
      }
 });
 
