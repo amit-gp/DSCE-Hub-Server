@@ -19,6 +19,7 @@ router.post('/book', function(req, res, next) {
 
 router.post('/user', function(req, res, next) {
 
+
      User.findOne({Email: req.body.Email}, function(err, user) {
           if(user){
                res.send({Login: "Unsuccessful"});
@@ -53,8 +54,8 @@ router.get('/book', function(req, res, next) {
 
   ----------TODO--------------------------*/
 
-    console.log(req.query.Math);
-    Book.find({}, function(err, docs) {
+     
+    Book.find({Subject: req.query.Subject}, function(err, docs) {
           res.send(docs);
     });
 });
