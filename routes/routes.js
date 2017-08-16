@@ -99,6 +99,8 @@ router.post('/userLogin', function(req, res, next) {
 
 router.get('/book', function(req, res, next) {
 
+    console.log(req.query);
+
   /*----------TODO-------------------------
     ----Implement duplicate books
   ----------TODO--------------------------*/
