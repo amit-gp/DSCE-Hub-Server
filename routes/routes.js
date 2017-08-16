@@ -2,11 +2,35 @@ const express = require('express');
 const CollegeNotification = require('../models/collegeNotificationModel');
 const Book = require('../models/bookModel')
 const User = require('../models/UserModel');
+const nodemailer = require("nodemailer");
 const router = express.Router();
 
 //----------FOR TESTING ONLY----------------------------
 router.get('/amit', function(req, res, next) {
      res.send({Name: "Amit in routes"});
+
+     var transporter = nodemailer.createTransport({
+       service: 'gmail',
+        auth: {
+          user: 'noreply.dsiapp@gmail.com',
+          pass: 'ataaknowsthepassword'
+        }
+});
+
+    var mailOptions = {
+        from: 'noreply.dsiapp@gmail.com',
+        to: 'theamit97@gmail.com',
+        subject: 'Sending Email using Node.js',
+        text: 'That was easy!'
+      };
+
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
 });
 //----------FOR TESTING ONLY----------------------------
 
