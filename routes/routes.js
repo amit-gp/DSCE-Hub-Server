@@ -49,6 +49,7 @@ router.get('/userActivate', function(req, res, next) {
             if(user){
                 user.Activated = 'true';
                 user.save();
+                res.sendFile('public/accountActivated.html', {root: __dirname });
             }
             else {
                 // To implemnt user not exist ---------------------------------

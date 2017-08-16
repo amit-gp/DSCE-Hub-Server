@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
 
+app.set('view engine', 'jade');
 //Middlewares (order is important)
 app.use(bodyParser.json());
 app.use(require('./routes/routes'));
