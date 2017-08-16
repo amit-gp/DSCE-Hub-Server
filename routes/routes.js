@@ -23,7 +23,7 @@ function sendMailTo(email) {
         from: 'noreply.dsiapp@gmail.com',
         to: email,
         subject: 'Account Conformation',
-        text: 'Please click the link below to conform your email:\n' + 'http://ec2-54-169-218-212.ap-southeast-1.compute.amazonaws.com:4000/user/?hash=' + hash + '&email=' + email;
+        text: 'Please click the link below to conform your email:\n' + 'http://ec2-54-169-218-212.ap-southeast-1.compute.amazonaws.com:4000/userActivate/?hash=' + hash + '&email=' + email
       };
 
       transporter.sendMail(mailOptions, function(error, info){
