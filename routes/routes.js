@@ -119,6 +119,17 @@ router.get('/book', function(req, res, next) {
     }
 });
 
+router.delete('/book', function(req, res, next) {
+    Book.findOneAndRemove({Title: req.query.book, Name: req.query.name}, function(err, doc) {
+        if(err){
+            res.send(err);
+        }
+        else {
+            res.send(doc);
+        }
+    });
+})
+
 router.get('/collegeNotification', function(req, res, next) {
           CollegeNotification.find({messageLevel: "college"}, function(err, docs) {
           res.send(docs);
