@@ -31,6 +31,11 @@ const UserSchema = new Schema({
      Admin: {
           type: String,
           required: [true]
+     },
+
+     Activated: {
+         type: String,
+         required: [true]
      }
 });
 

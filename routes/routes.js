@@ -4,24 +4,26 @@ const Book = require('../models/bookModel')
 const User = require('../models/UserModel');
 const nodemailer = require("nodemailer");
 const router = express.Router();
+const crypto = require('crypto');
+const key = 'RameshBabu'; //Name of the HOD of CSE department at the time ! -----------------------------------------------------------
 
-//----------FOR TESTING ONLY----------------------------
-router.get('/amit', function(req, res, next) {
-     res.send({Name: "Amit in routes"});
-
-     var transporter = nodemailer.createTransport({
-       service: 'gmail',
-        auth: {
-          user: 'noreply.dsiapp@gmail.com',
-          pass: 'ataaknowsthepassword'
-        }
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+   auth: {
+     user: 'noreply.dsiapp@gmail.com',
+     pass: 'ataaknowsthepassword'
+   }
 });
+
+function sendMailTo(email) {
+
+    const hash = crypto.createHmac('sha256', key).update(email).digest('hex');
 
     var mailOptions = {
         from: 'noreply.dsiapp@gmail.com',
-        to: 'theamit97@gmail.com',
-        subject: 'Sending Email using Node.js',
-        text: 'That was easy!'
+        to: email,
+        subject: 'Account Conformation',
+        text: 'Please click the link below to conform your email:\n' + 'http://ec2-54-169-218-212.ap-southeast-1.compute.amazonaws.com:4000/user/?hash=' + hash + '&email=' + email;
       };
 
       transporter.sendMail(mailOptions, function(error, info){
@@ -31,8 +33,32 @@ router.get('/amit', function(req, res, next) {
           console.log('Email sent: ' + info.response);
         }
       });
+}
+
+//----------FOR TESTING ONLY----------------------------  Email verification
+router.get('/amit', function(req, res, next) {
+     res.send({Name: "Amit in routes"});
 });
 //----------FOR TESTING ONLY----------------------------
+
+router.get('/userActivate', function(req, res, next) {
+
+    const hash = crypto.createHmac('sha256', key).update(req.query.email).digest('hex');
+    if(hash == req.query.hash){
+        User.findOne({Email: req.query.email}, function(err, user) {
+            if(user){
+                user.Activated = 'true';
+                user.save();
+            }
+            else {
+                // To implemnt user not exist ---------------------------------
+            }
+
+        });
+    }
+    //Give back HTML PAGE of successful activation --------------------------------------------------------------
+
+});
 
 router.post('/book', function(req, res, next) {
 
@@ -49,6 +75,8 @@ router.post('/user', function(req, res, next) {
           }
           else {
                User.create(req.body).then(function(user) {
+
+                    sendMailTo(user.Email);
                     res.send(user);
                }).catch(next);
           }
