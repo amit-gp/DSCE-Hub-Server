@@ -115,7 +115,7 @@ router.get('/book', function(req, res, next) {
             else {
                 res.send(doc);
             }
-    }
+    });
 }
     else if (req.query.Subject == "myBooks") {
         Book.find({Name: req.query.Name}, function(err, docs) {
