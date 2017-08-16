@@ -92,7 +92,7 @@ router.post('/userLogin', function(req, res, next) {
                res.send(user);
           }
           else {
-               res.send({Login: "Unsuccessful"});
+               res.send({Login: "Unsuccessful", Activated: "false"});
           }
      });
 });
