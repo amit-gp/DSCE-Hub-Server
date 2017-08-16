@@ -107,6 +107,15 @@ router.get('/book', function(req, res, next) {
                res.send(docs);
          });
     }
+    else if (req.query.delete == "true") {
+        Book.findOneAndRemove({Title: req.query.book, Name: req.query.name}, function(err, doc) {
+            if(err){
+                res.send(err);
+            }
+            else {
+                res.send(doc);
+            }
+    }
     else if (req.query.Subject == "myBooks") {
         Book.find({Name: req.query.Name}, function(err, docs) {
               res.send(docs);
