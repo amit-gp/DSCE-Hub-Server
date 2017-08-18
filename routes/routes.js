@@ -164,7 +164,7 @@ router.post('/collegeNotification', function(req, res, next) {
 
 
     console.log('Inside !!');
-    console.log(req.query);
+    console.log(req.body.attachmentNameReal);
 
     CollegeNotification.create(req.body).then(function(collegeNotification) {
          res.send(collegeNotification);
