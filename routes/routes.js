@@ -159,7 +159,7 @@ router.post('/collegeNotification', function(req, res, next) {
     if(req.query.isAttachment == true){
         var storage = multer.diskStorage({
             destination: function (req, file, cb) {
-                cb(null, '/../../FileUploads/')
+                cb(null, '/../FileUploads/')
             },
             filename: function (req, file, cb) {
 
