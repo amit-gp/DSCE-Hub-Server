@@ -14,6 +14,18 @@ const CollegeNotificationSchema = new Schema({
      messageLevel:{
           type: String,
           required: [true, "Message level cannot be left empty !"]
+     },
+     hasAttachment:{
+         type: String,
+         required: [true, "Has Attachmentcannot be left empty !"]
+     },
+     attachmentLocation:{
+         type: String,
+         required: [false]
+     },
+     attachmentType:{
+         type: String,
+         required: [false]
      }
 });
 

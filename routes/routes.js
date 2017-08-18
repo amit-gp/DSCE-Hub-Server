@@ -4,6 +4,7 @@ const Book = require('../models/bookModel')
 const User = require('../models/UserModel');
 const nodemailer = require("nodemailer");
 const router = express.Router();
+var multer = require('multer');
 const crypto = require('crypto');
 const key = 'RameshBabu'; //Name of the HOD of CSE department at the time ! -----------------------------------------------------------
 
@@ -99,7 +100,7 @@ router.post('/userLogin', function(req, res, next) {
 
 router.get('/book', function(req, res, next) {
 
-    console.log(req.query);
+    //console.log(req.query);
 
   /*----------TODO-------------------------
     ----Implement duplicate books
@@ -148,11 +149,50 @@ router.get('/collegeNotification', function(req, res, next) {
      });
 });
 
+
+
 //POST API IS STILL IN DEV MODE NOT FINAL !!!
 router.post('/collegeNotification', function(req, res, next) {
-     CollegeNotification.create(req.body).then(function(collegeNotification) {
-          res.send(collegeNotification);
-     }).catch(next);
+
+    var mfile;
+
+    if(req.body.hasAttachment == true){
+
+        var storage = multer.diskStorage({
+            destination: function (req, file, cb) {
+                cb(null, '/../../FileUploads/')
+            },
+            filename: function (req, file, cb) {
+
+                mfile = file.fieldname + '-' + Date.now() + req.query.attachmentType;
+                cb(null, mfile)
+            }
+        });
+
+        var upload = multer({ storage: storage }).single('notificationFile');
+
+        upload(req, res, function (err) {
+            if (err) {
+                res.json({
+                    success: false,
+                    message: err
+                });
+                // An error occurred when uploading
+            }
+            res.json({
+                success: true,
+                message: 'File uploaded!'
+            });
+
+            req.attachmentLocation = mfile;
+            req.attachmentType = req.query.attachmentType;
+            CollegeNotification.create(req.body).then(function(collegeNotification) {
+                 res.send(collegeNotification);
+            }).catch(next);
+
+            // Everything went fine
+        })
+    }
 });
 
 module.exports = router;
