@@ -26,6 +26,10 @@ const CollegeNotificationSchema = new Schema({
      attachmentType:{
          type: String,
          required: [false]
+     },
+     attachmentNameReal:{
+         type: String,
+         required: [false]
      }
 });
 

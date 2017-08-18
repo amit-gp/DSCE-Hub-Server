@@ -107,6 +107,7 @@ router.get('/book', function(req, res, next) {
   ----------TODO--------------------------*/
     if(req.query.Subject == ""){
          Book.find({}, function(err, docs) {
+               res.setHeader('Cache-Control', 'public, max-age=31557600');
                res.send(docs);
          });
     }
