@@ -158,6 +158,7 @@ router.post('/collegeNotification', function(req, res, next) {
     console.log('Inside !!');
     console.log(req.query);
 
+    /*
     if(req.query.isAttachment == true){
         var storage = multer.diskStorage({
             destination: function (req, file, cb) {
@@ -192,11 +193,42 @@ router.post('/collegeNotification', function(req, res, next) {
             req.attachmentLocation = mfile;
             req.attachmentType = req.query.attachmentType;
         }
-        CollegeNotification.create(req.body).then(function(collegeNotification) {
-             res.send(collegeNotification);
-        }).catch(next);
-    }
+
+    }*/
     // Everything went fine
+
+    CollegeNotification.create(req.body).then(function(collegeNotification) {
+         res.send(collegeNotification);
+    }).catch(next);
 });
+
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + '.jpg')
+    }
+});
+
+var upload = multer({ storage: storage }).single('profileImage');
+
+
+router.post('/notificationAttachment', function (req, res) {
+    upload(req, res, function (err) {
+        if (err) {
+            // An error occurred when uploading
+        }
+        res.json({
+            success: true,
+            message: 'Image uploaded!'
+        });
+
+        // Everything went fine
+    })
+});
+
+router.post
 
 module.exports = router;
