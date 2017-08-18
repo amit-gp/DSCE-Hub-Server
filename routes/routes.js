@@ -151,6 +151,7 @@ router.get('/collegeNotification', function(req, res, next) {
 
 
 var mfile;
+var mfileExtension;
 //POST API IS STILL IN DEV MODE NOT FINAL !!!
 router.post('/collegeNotification', function(req, res, next) {
 
@@ -208,7 +209,7 @@ var storage = multer.diskStorage({
         cb(null, 'uploads/')
     },
     filename: function (req, file, cb) {
-        cb(null, mfile)
+        cb(null, mfile + mfileExtension)
     }
 });
 
@@ -219,6 +220,7 @@ router.post('/notificationAttachment', function (req, res) {
 
     console.log(req);
     mfile = req.query.attachmentName;
+    mfileExtension = req.query.extension;
 
     upload(req, res, function (err) {
         if (err) {
