@@ -162,9 +162,7 @@ var mfileExtension;
 //POST API IS STILL IN DEV MODE NOT FINAL !!!
 router.post('/collegeNotification', function(req, res, next) {
 
-
-    console.log('Inside !!');
-
+    //console.log('Inside !!');
     CollegeNotification.create(req.body).then(function(collegeNotification) {
          res.send(collegeNotification);
     }).catch(next);
@@ -185,7 +183,7 @@ var upload = multer({ storage: storage }).single('profileImage');
 
 router.post('/notificationAttachment', function (req, res) {
 
-    console.log(req);
+    //console.log(req);
     mfile = req.query.attachmentName;
     mfileExtension = req.query.extension;
 
