@@ -150,11 +150,11 @@ router.get('/collegeNotification', function(req, res, next) {
 });
 
 
-
+var mfile;
 //POST API IS STILL IN DEV MODE NOT FINAL !!!
 router.post('/collegeNotification', function(req, res, next) {
 
-    var mfile;
+
     console.log('Inside !!');
     console.log(req.query);
 
@@ -216,6 +216,10 @@ var upload = multer({ storage: storage }).single('profileImage');
 
 
 router.post('/notificationAttachment', function (req, res) {
+
+    console.log(req);
+    mfile = req.query.attachmentName;
+
     upload(req, res, function (err) {
         if (err) {
             // An error occurred when uploading
