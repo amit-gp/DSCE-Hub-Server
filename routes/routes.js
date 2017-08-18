@@ -156,15 +156,15 @@ router.post('/collegeNotification', function(req, res, next) {
 
     var mfile;
 
-    if(req.body.hasAttachment == true){
-
+    if(req.query.isAttachment == true){
         var storage = multer.diskStorage({
             destination: function (req, file, cb) {
                 cb(null, '/../../FileUploads/')
             },
             filename: function (req, file, cb) {
 
-                mfile = file.fieldname + '-' + Date.now() + req.query.attachmentType;
+                //mfile = file.fieldname + '-' + Date.now() + req.query.attachmentType;
+                mfile = req.query.attachmentName
                 cb(null, mfile)
             }
         });
@@ -183,16 +183,18 @@ router.post('/collegeNotification', function(req, res, next) {
                 success: true,
                 message: 'File uploaded!'
             });
-
-            req.attachmentLocation = mfile;
-            req.attachmentType = req.query.attachmentType;
-            CollegeNotification.create(req.body).then(function(collegeNotification) {
-                 res.send(collegeNotification);
-            }).catch(next);
-
-            // Everything went fine
         })
     }
+    else {
+        if(req.body.hasAttachment == true){
+            req.attachmentLocation = mfile;
+            req.attachmentType = req.query.attachmentType;
+        }
+        CollegeNotification.create(req.body).then(function(collegeNotification) {
+             res.send(collegeNotification);
+        }).catch(next);
+    }
+    // Everything went fine
 });
 
 module.exports = router;
