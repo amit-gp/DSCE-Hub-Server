@@ -9,7 +9,7 @@ const CollegeNotificationSchema = new Schema({
      },
      message:{
           type: String,
-          required: [true, "Message cannot be left empty !"]
+          required: [false]
      },
      messageLevel:{
           type: String,
