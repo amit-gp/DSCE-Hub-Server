@@ -202,13 +202,13 @@ router.post('/collegeNotification', function(req, res, next) {
     }).catch(next);
 });
 
-
+//cb(null, file.fieldname + '-' + Date.now() + '.jpg')
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/')
     },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + '.jpg')
+        cb(null, mfile)
     }
 });
 
