@@ -150,6 +150,7 @@ router.get('/downloadAttachment', function(req, res) {
 
 router.get('/collegeNotification', function(req, res, next) {
           CollegeNotification.find({messageLevel: "college"}, function(err, docs) {
+          res.setHeader('Cache-Control', 'public, max-age=31557600');
           res.send(docs);
      });
 });
