@@ -19,7 +19,7 @@ const CollegeNotificationSchema = new Schema({
          type: String,
          required: [true, "Has Attachmentcannot be left empty !"]
      },
-     attachmentLocation:{
+     attachmentName:{
          type: String,
          required: [false]
      },
