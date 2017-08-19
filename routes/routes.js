@@ -163,7 +163,7 @@ router.get('/collegeNotification', function(req, res, next) {
           //res.setHeader('Cache-Control', 'public, max-age=31557600');
           levelJson = docs;
           });
-          var result = mergeJSON(collegeJson, levelJson);
+          var result = mergeJSON.merge(collegeJson, levelJson);
           res.send(result);
 });
 
