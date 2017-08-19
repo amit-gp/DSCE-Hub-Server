@@ -150,7 +150,7 @@ router.get('/downloadAttachment', function(req, res) {
 
 router.get('/collegeNotification', function(req, res, next) {
 
-          console.log(req);
+          console.log(req.query);
 
           if(req.query.year == 'admin'){
 
