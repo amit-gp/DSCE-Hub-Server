@@ -159,7 +159,7 @@ router.get('/collegeNotification', function(req, res, next) {
           collegeJson = docs;
           });
 
-          CollegeNotification.find({messageLevel: req.body.year}, function(err, docs) {
+          CollegeNotification.find({messageLevel: req.query.year}, function(err, docs) {
           //res.setHeader('Cache-Control', 'public, max-age=31557600');
           levelJson = docs;
           });
