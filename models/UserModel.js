@@ -36,7 +36,11 @@ const UserSchema = new Schema({
      Activated: {
          type: String,
          required: [true]
-     }
+    },
+    year:{
+         type: String,
+         required: [true]
+    }
 });
 
 const User = mongoose.model('User', UserSchema);
