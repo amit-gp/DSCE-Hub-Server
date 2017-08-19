@@ -107,7 +107,6 @@ router.get('/book', function(req, res, next) {
   ----------TODO--------------------------*/
     if(req.query.Subject == ""){
          Book.find({}, function(err, docs) {
-               res.setHeader('Cache-Control', 'public, max-age=31557600');
                res.send(docs);
          });
     }
@@ -158,12 +157,13 @@ router.get('/collegeNotification', function(req, res, next) {
                res.send(docs);
                });
           }
-
-          //console.log(req.query.year);
-          CollegeNotification.find({ "$or" : [{messageLevel: req.query.year},{messageLevel: "college"}] }, function(err, docs) {
-          //res.setHeader('Cache-Control', 'public, max-age=31557600');
-          res.send(docs);
-          });
+          else{
+               //console.log(req.query.year);
+               CollegeNotification.find({ "$or" : [{messageLevel: req.query.year},{messageLevel: "college"}] }, function(err, docs) {
+               //res.setHeader('Cache-Control', 'public, max-age=31557600');
+               res.send(docs);
+               });
+          }
 });
 
 
