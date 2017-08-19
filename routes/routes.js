@@ -4,7 +4,6 @@ const Book = require('../models/bookModel')
 const User = require('../models/UserModel');
 const nodemailer = require("nodemailer");
 const router = express.Router();
-const underScore = require('underscore');
 var multer = require('multer');
 const crypto = require('crypto');
 const key = 'RameshBabu'; //Name of the HOD of CSE department at the time ! -----------------------------------------------------------
@@ -151,21 +150,10 @@ router.get('/downloadAttachment', function(req, res) {
 });
 
 router.get('/collegeNotification', function(req, res, next) {
-
-          var year = req.query.level;
-          var collegeDocs, yearDocs;
-
           CollegeNotification.find({messageLevel: "college"}, function(err, docs) {
           //res.setHeader('Cache-Control', 'public, max-age=31557600');
-          collegeDocs = docs;
+          res.send(docs);
      });
-
-     CollegeNotification.find({messageLevel: year}, function(err, docs) {
-     //res.setHeader('Cache-Control', 'public, max-age=31557600');
-     yearDocs = docs;
-     });
-
-     res.send(underScore.extend(collegeDocs, yearDocs));
 });
 
 
@@ -173,6 +161,7 @@ var mfile;
 var mfileExtension;
 //POST API IS STILL IN DEV MODE NOT FINAL !!!
 router.post('/collegeNotification', function(req, res, next) {
+
 
     //console.log('Inside !!');
     CollegeNotification.create(req.body).then(function(collegeNotification) {
