@@ -4,7 +4,6 @@ const Book = require('../models/bookModel')
 const User = require('../models/UserModel');
 const nodemailer = require("nodemailer");
 const router = express.Router();
-const mergeJSON = require("merge-json") ;
 var multer = require('multer');
 const crypto = require('crypto');
 const key = 'RameshBabu'; //Name of the HOD of CSE department at the time ! -----------------------------------------------------------
@@ -152,22 +151,19 @@ router.get('/downloadAttachment', function(req, res) {
 
 router.get('/collegeNotification', function(req, res, next) {
 
-          var collegeJson, levelJson;
-          console.log(req.query.year);
+          if(req.query.year == 'admin'){
+
+               CollegeNotification.find({}, function(err, docs) {
+               //res.setHeader('Cache-Control', 'public, max-age=31557600');
+               res.send(docs);
+               });
+          }
+
+          //console.log(req.query.year);
           CollegeNotification.find({ "$or" : [{messageLevel: req.query.year},{messageLevel: "college"}] }, function(err, docs) {
           //res.setHeader('Cache-Control', 'public, max-age=31557600');
-          collegeJson = docs;
           res.send(docs);
           });
-
-/*
-          CollegeNotification.find({messageLevel: req.query.year}, function(err, docs) {
-          //res.setHeader('Cache-Control', 'public, max-age=31557600');
-          levelJson = docs;
-          });
-          var result = mergeJSON.merge(collegeJson, levelJson);
-          res.send(result);
-          */
 });
 
 
