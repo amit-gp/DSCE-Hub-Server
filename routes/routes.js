@@ -153,7 +153,7 @@ router.get('/collegeNotification', function(req, res, next) {
 
           var year = req.query.level;
 
-          CollegeNotification.find({messageLevel: "college"}, {messageLevel: year}, function(err, docs) {
+          CollegeNotification.find().and([{messageLevel: "college"}, {messageLevel: year}]).exec(function(err, docs) {
           //res.setHeader('Cache-Control', 'public, max-age=31557600');
           res.send(docs);
      });
