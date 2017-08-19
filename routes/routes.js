@@ -164,7 +164,7 @@ router.get('/collegeNotification', function(req, res, next) {
           levelJson = docs;
           });
           var result = mergeJSON(collegeJson, levelJson);
-          res.send(docs);
+          res.send(result);
 });
 
 
