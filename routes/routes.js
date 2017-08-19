@@ -4,6 +4,7 @@ const Book = require('../models/bookModel')
 const User = require('../models/UserModel');
 const nodemailer = require("nodemailer");
 const router = express.Router();
+const underScore = require('underscore');
 var multer = require('multer');
 const crypto = require('crypto');
 const key = 'RameshBabu'; //Name of the HOD of CSE department at the time ! -----------------------------------------------------------
@@ -152,11 +153,19 @@ router.get('/downloadAttachment', function(req, res) {
 router.get('/collegeNotification', function(req, res, next) {
 
           var year = req.query.level;
+          var collegeDocs, yearDocs;
 
-          CollegeNotification.find().or([{messageLevel: "college"}, {messageLevel: year}]).exec(function(err, docs) {
+          CollegeNotification.find({messageLevel: "college"}, function(err, docs) {
           //res.setHeader('Cache-Control', 'public, max-age=31557600');
-          res.send(docs);
+          collegeDocs = docs;
      });
+
+     CollegeNotification.find({messageLevel: year}, function(err, docs) {
+     //res.setHeader('Cache-Control', 'public, max-age=31557600');
+     yearDocs = docs;
+     });
+
+     res.send(underScore.extend(collegeDocs, yearDocs));
 });
 
 
