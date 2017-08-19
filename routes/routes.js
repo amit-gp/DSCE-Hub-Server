@@ -154,7 +154,7 @@ router.get('/collegeNotification', function(req, res, next) {
 
           var collegeJson, levelJson;
 
-          CollegeNotification.find({messageLevel: "college"}, function(err, docs) {
+          CollegeNotification.find({ "$or" : [{messageLevel: req.query.year},{messageLevel: "college"}] }, function(err, docs) {
           //res.setHeader('Cache-Control', 'public, max-age=31557600');
           collegeJson = docs;
           res.send(docs);
