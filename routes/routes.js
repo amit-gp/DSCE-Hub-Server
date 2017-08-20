@@ -151,7 +151,7 @@ router.get('/downloadAttachment', function(req, res) {
 
 router.get('/collegeNotification', function(req, res, next) {
 
-          console.log(req.query);
+          //console.log(req.query);
 
           if(req.query.year == 'admin'){
 
@@ -172,7 +172,7 @@ router.get('/collegeNotification', function(req, res, next) {
 router.get('/heartBeat', function(req, res, next) {
 
      console.log(req.query);
-     
+
      CollegeNotification.count({ "$or" : [{messageLevel: req.query.year},{messageLevel: "college"}] }, function(err, count) {
           res.send({Count: count});
      });
