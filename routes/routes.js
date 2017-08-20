@@ -184,7 +184,7 @@ var mfileExtension;
 router.post('/collegeNotification', function(req, res, next) {
 
      var dt = dateTime.create();
-     var formatted = dt.format('Y/m/d');
+     var formatted = dt.format('d/m/Y');
      req.body.DatePosted = formatted;
     //console.log('Inside !!');
     CollegeNotification.create(req.body).then(function(collegeNotification) {
