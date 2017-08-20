@@ -169,12 +169,16 @@ router.get('/collegeNotification', function(req, res, next) {
           }
 });
 
+router.get('/heartBeat', function(req, res, next) {
+     CollegeNotification.count({ "$or" : [{messageLevel: req.query.year},{messageLevel: "college"}] }, function(err, count) {
+          res.send({Count: count});
+     });
+});
 
 var mfile;
 var mfileExtension;
 //POST API IS STILL IN DEV MODE NOT FINAL !!!
 router.post('/collegeNotification', function(req, res, next) {
-
 
      var dt = dateTime.create();
      var formatted = dt.format('Y/m/d');
