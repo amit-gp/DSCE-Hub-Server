@@ -174,9 +174,8 @@ var mfileExtension;
 //POST API IS STILL IN DEV MODE NOT FINAL !!!
 router.post('/collegeNotification', function(req, res, next) {
 
-     var now = new Date();
-     date.format(now, 'YYYY/MM/DD');
-     req.body.DatePosted = now;
+     var d = new Date(year, month, day);
+     req.body.DatePosted = d;
     //console.log('Inside !!');
     CollegeNotification.create(req.body).then(function(collegeNotification) {
          res.send(collegeNotification);
