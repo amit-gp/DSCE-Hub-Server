@@ -6,6 +6,7 @@ const nodemailer = require("nodemailer");
 const router = express.Router();
 var multer = require('multer');
 const date = require('date-and-time');
+var dateTime = require('node-datetime');
 const crypto = require('crypto');
 const key = 'RameshBabu'; //Name of the HOD of CSE department at the time ! -----------------------------------------------------------
 var transporter = nodemailer.createTransport({
@@ -174,8 +175,10 @@ var mfileExtension;
 //POST API IS STILL IN DEV MODE NOT FINAL !!!
 router.post('/collegeNotification', function(req, res, next) {
 
-     var d = new Date(year, month, day);
-     req.body.DatePosted = d;
+
+     var dt = dateTime.create();
+     var formatted = dt.format('Y/m/d');
+     req.body.DatePosted = now;
     //console.log('Inside !!');
     CollegeNotification.create(req.body).then(function(collegeNotification) {
          res.send(collegeNotification);
