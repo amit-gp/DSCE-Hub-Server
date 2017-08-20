@@ -26,7 +26,11 @@ const CollegeNotificationSchema = new Schema({
      attachmentType:{
          type: String,
          required: [false]
-     }
+    },
+    DatePosted:{
+         type: String,
+         required: [false]
+    }
 });
 
 const CollegeNotification = mongoose.model('CollegeNotification', CollegeNotificationSchema);
