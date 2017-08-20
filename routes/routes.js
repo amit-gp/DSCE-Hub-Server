@@ -175,8 +175,8 @@ var mfileExtension;
 router.post('/collegeNotification', function(req, res, next) {
 
      var now = new Date();
-     date.format(now, 'YYYY/MM/DD'); 
-     req.body.Date = now;
+     date.format(now, 'YYYY/MM/DD');
+     req.body.DatePosted = now;
     //console.log('Inside !!');
     CollegeNotification.create(req.body).then(function(collegeNotification) {
          res.send(collegeNotification);
