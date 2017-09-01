@@ -151,13 +151,13 @@ router.get('/downloadAttachment', function(req, res) {
 
 router.get('/collegeNotification', function(req, res, next) {
 
-          console.log(req.query);
+          //console.log(req.query);
 
           if(req.query.year == 'admin'){
 
                CollegeNotification.find({}, function(err, docs) {
                //res.setHeader('Cache-Control', 'public, max-age=31557600');
-               console.log(docs);
+               //console.log(docs);
                res.send(docs);
                });
           }
@@ -166,7 +166,7 @@ router.get('/collegeNotification', function(req, res, next) {
                CollegeNotification.find({ "$or" : [{messageLevel: req.query.year},{messageLevel: "college"}] }, function(err, docs) {
                //res.setHeader('Cache-Control', 'public, max-age=31557600');
                res.send(docs);
-               console.log(docs);
+               //console.log(docs);
                });
           }
 });
