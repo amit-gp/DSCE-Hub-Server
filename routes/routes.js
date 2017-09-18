@@ -21,6 +21,7 @@ function sendMailTo(email) {
 
     const hash = crypto.createHmac('sha256', key).update(email).digest('hex');
     console.log("\n\n***********Generating hash based on: " + email);
+    console.log("\n\n***********Hash genearated: " + hash);
 
     var mailOptions = {
         from: 'noreply.dsiapp@gmail.com',
