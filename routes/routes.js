@@ -45,16 +45,21 @@ router.get('/amit', function(req, res, next) {
 
 router.get('/userActivate', function(req, res, next) {
 
+     console.log(req.query.email + "\n");
     const hash = crypto.createHmac('sha256', key).update(req.query.email).digest('hex');
     if(hash == req.query.hash){
+         console.log("\nHash is equal");
         User.findOne({Email: req.query.email}, function(err, user) {
+             console.log("\nMongo Query result : " + user);
             if(user){
                 user.Activated = 'true';
                 user.save();
+                console.log("Account activated");
                 res.sendFile('public/accountActivated.html', {root: __dirname});
             }
             else {
-                // To implemnt user not exist ---------------------------------
+                console.log("\nUser is not found...");
+                res.status(404).send('User not found !');
             }
 
         });
@@ -173,7 +178,7 @@ router.get('/collegeNotification', function(req, res, next) {
 
 router.get('/heartBeat', function(req, res, next) {
 
-     console.log(req.query);
+     //console.log(req.query);
 
      CollegeNotification.count({ "$or" : [{messageLevel: req.query.year},{messageLevel: "college"}] }, function(err, count) {
           res.send({Count: count});
