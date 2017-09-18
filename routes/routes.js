@@ -47,6 +47,8 @@ router.get('/userActivate', function(req, res, next) {
 
      console.log(req.query.email + "\n");
     const hash = crypto.createHmac('sha256', key).update(req.query.email).digest('hex');
+    console.log("\nGiven Hash: " + req.query.hash);
+    console.log("\nMy Hash: " + hash);
     if(hash == req.query.hash){
          console.log("\nHash is equal");
         User.findOne({Email: req.query.email}, function(err, user) {
