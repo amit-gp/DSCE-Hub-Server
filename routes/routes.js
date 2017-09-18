@@ -26,8 +26,8 @@ function sendMailTo(email) {
     var mailOptions = {
         from: 'noreply.dsiapp@gmail.com',
         to: email,
-        subject: 'Account Conformation',
-        text: 'Please click the link below to conform your email:\n' + 'http://ec2-13-126-113-185.ap-south-1.compute.amazonaws.com:4000/userActivate/?hash=' + hash + '&email=' + email
+        subject: 'Account Confirmation',
+        text: '\nPlease click the link below to confirm your email:\n\n' + 'http://ec2-13-126-113-185.ap-south-1.compute.amazonaws.com:4000/userActivate/?hash=' + hash + '&email=' + email
       };
 
       transporter.sendMail(mailOptions, function(error, info){
