@@ -20,6 +20,7 @@ var transporter = nodemailer.createTransport({
 function sendMailTo(email) {
 
     const hash = crypto.createHmac('sha256', key).update(email).digest('hex');
+    console.log("\n\n***********Generating hash based on: " + email);
 
     var mailOptions = {
         from: 'noreply.dsiapp@gmail.com',
@@ -86,7 +87,7 @@ router.post('/user', function(req, res, next) {
           else {
                User.create(req.body).then(function(user) {
 
-                    sendMailTo(user.Email);
+                    sendMailTo(req.body.Email);
                     res.send(user);
                }).catch(next);
           }
